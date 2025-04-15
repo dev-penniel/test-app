@@ -59,6 +59,9 @@ new class extends Component {
                         }
                     }
                 },
+                
+                placeholder: 'Start writing here...',
+
                 data: @json($content ? json_decode($content, true) : null),
                 onChange: async () => {
                     const output = await editor.save();

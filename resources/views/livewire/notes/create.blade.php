@@ -11,6 +11,11 @@ new class extends Component {
         $this->editorId = 'editor-' . uniqid();
     }
 
+    public function createNote()
+    {
+        dd($this->content);
+    }
+
     // public function saveContent()
     // {
     //     // Process your content here
@@ -19,8 +24,8 @@ new class extends Component {
 }; ?>
 
 <div>
-    <div wire:ignore>
-        <div id="{{ $editorId }}" class=""></div>
+    <div wire:ignore >
+        <div id="{{ $editorId }}" class="" wire:model="content" wire:keyup="createNote" wire:on></div>
     </div>
     
     {{-- <button wire:click="saveContent" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">

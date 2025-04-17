@@ -14,3 +14,4 @@ window.Code = Code;
 window.InlineCode = InlineCode;
 window.Table = Table;
 window.Image = Image;
+

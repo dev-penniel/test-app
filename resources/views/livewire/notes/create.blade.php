@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Volt\Component;
+use App\Models\Note;
 
 new class extends Component {
     public $content = '';
@@ -13,7 +14,16 @@ new class extends Component {
 
     public function createNote()
     {
-        dd($this->content);
+
+        $validated = $this->validate([
+            'content' => 'required',
+        ]);
+
+        Note::create([
+            'note' => $validated['content']
+        ]);
+
+        $this->dispatch('note-created');
     }
 
     // public function saveContent()

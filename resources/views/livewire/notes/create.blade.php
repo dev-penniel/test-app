@@ -26,16 +26,24 @@ new class extends Component {
         $this->dispatch('note-created');
     }
 
-    // public function saveContent()
-    // {
-    //     // Process your content here
-    //     // $this->content contains the Editor.js JSON output
-    // }
+    
+
 }; ?>
 
 <div>
     <div wire:ignore >
-        <div id="{{ $editorId }}" class="" wire:model="content" wire:keyup="createNote" wire:on></div>
+        <form wire:submit.ignore="createNote">
+            <div id="{{ $editorId }}" class="" wire:model="content" wire:on></div>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center justify-end">
+                    <flux:button variant="primary" type="submit" class="w-full">{{ __('Save') }}</flux:button>
+                </div>
+
+                <x-action-message class="me-3" on="note-created">
+                    {{ __('Saved.') }}
+                </x-action-message>
+            </div>
+        </form>
     </div>
     
     {{-- <button wire:click="saveContent" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
@@ -51,7 +59,14 @@ new class extends Component {
                 tools: {
                     header: {
                         class: Header,
-                        inlineToolbar: true
+                        inlineToolbar: true,
+                        config: {
+                            placeholder: 'Enter header text...',
+                            levels: [1, 2, 3, 4],
+                            defaultLevel: 1,
+                            // Custom CSS class for headers
+                            defaultClassName: 'custom-header'
+                        }
                     },
                     list: {
                         class: List,
